@@ -1,0 +1,62 @@
+// 第一步：导入 NutUI 相关样式（先加载）
+// 导入 NutUI-React 3.0 CSS Variables 主题配置
+@import './assets/styles/theme.css';
+
+// 导入 NutUI 变量（自定义主题已在 config/index.ts 中全局注入）
+@import '@nutui/nutui-react-taro/dist/styles/variables.scss';
+
+// 第二步：导入 Tailwind CSS（后加载，可以覆盖NutUI）
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+// 不使用 sass 就这么写
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
+
+// 第三步：全局样式
+page {
+  background-color: var(--nutui-body-background);
+  font-family: var(--nutui-font-family);
+  font-size: var(--nutui-font-size-base);
+  color: var(--nutui-color-text);
+}
+
+// 示例：如何使用 CSS Variables 自定义组件样式
+.custom-button {
+  background: var(--nutui-color-primary);
+  color: var(--nutui-color-white);
+  border-radius: 25px;
+  font-size: var(--nutui-font-size-base);
+  height: 38px;
+  line-height: 36px;
+}
+
+.custom-cell {
+  background-color: var(--nutui-color-white);
+  color: var(--nutui-color-title);
+  font-size: var(--nutui-font-size-l);
+  border-radius: 6px;
+}
+
+// 页面容器样式
+.page-container {
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 0 12px;
+}
+
+// Tailwind CSS 与 NutUI 的集成示例
+// .tw-button {
+//   @apply bg-blue-500 text-white px-4 py-2 rounded-lg;
+// }
+
+// .tw-card {
+//   @apply bg-white shadow-lg rounded-lg p-4;
+// }
+
+// .tw-text-primary {
+//   @apply text-blue-600;
+// }
+

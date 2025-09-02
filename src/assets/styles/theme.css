@@ -1,0 +1,217 @@
+/* NutUI-React 3.0 CSS Variables 主题配置 */
+/* 参考文档：https://nutui.jd.com/taro/react/3x/#/zh-CN/guide/theme-react */
+
+:root {
+  /* 主色调 */
+  --nutui-color-primary: #1677ff;
+  --nutui-color-primary-stop-1: #69c0ff;
+  --nutui-color-primary-stop-2: #1677ff;
+  --nutui-color-primary-pressed: #0958d9;
+  --nutui-color-primary-disabled: #d9d9d9;
+  --nutui-color-primary-disabled-special: #bae7ff;
+  --nutui-color-primary-light-pressed: #e6f7ff;
+  --nutui-color-primary-icon: #1677ff;
+
+  /* 默认色 */
+  --nutui-color-default: #f7f8fa;
+  --nutui-color-default-pressed: #f2f3f5;
+  --nutui-color-default-light: #fafafa;
+  --nutui-color-default-disabled: #f7f8fa;
+  --nutui-color-primary-icon-disabled: #dadce0;
+  --nutui-color-primary-specialdisabled: #ffadbe;
+  --nutui-color-info-background: #0073ff;
+
+  /* 信息色 */
+  --nutui-color-info: #0073ff;
+  --nutui-color-info-pressed: #496af2;
+  --nutui-color-info-disabled: #89a6f8;
+  --nutui-color-info-light: #e5f5ff;
+  --nutui-color-info-text: #0073ff;
+
+  /* 成功色 */
+  --nutui-color-success: #00d900;
+  --nutui-color-success-pressed: #00b800;
+  --nutui-color-success-disabled: #b2f0ae;
+  --nutui-color-success-light: #e8f8e8;
+  --nutui-color-success-text: #2aa32a;
+
+  /* 警告色 */
+  --nutui-color-warning: #ffbf00;
+  --nutui-color-warning-pressed: #e6ac00;
+  --nutui-color-warning-disabled: #fdd3b9;
+  --nutui-color-warning-light: #fff7e6;
+  --nutui-color-warning-text: #d48806;
+
+  /* 危险色 */
+  --nutui-color-danger: #fa2c19;
+  --nutui-color-danger-pressed: #e53029;
+  --nutui-color-danger-disabled: #ffadbe;
+  --nutui-color-danger-light: #ffe7e6;
+  --nutui-color-danger-text: #d32029;
+
+  /* 辅助色 */
+  --nutui-color-help: #f5f5f5;
+  --nutui-color-title: #1a1a1a;
+  --nutui-color-title2: #666666;
+  --nutui-color-text: #505259;
+  --nutui-color-text-help: #888b94;
+  --nutui-color-text-disabled: #c2c4cc;
+  --nutui-color-text-dark: #1a1a1a;
+  --nutui-color-text-link: #0073ff;
+  --nutui-color-disable: #cccccc;
+  --nutui-color-white: #fff;
+  --nutui-color-black: #000;
+
+  /* 背景色 */
+  --nutui-color-background: #f2f3f5;
+  --nutui-color-background-overlay: #fff;
+  --nutui-color-background-sunken: #f7f8fa;
+  --nutui-color-border: rgba(0, 0, 0, 0.06);
+  --nutui-color-border-disabled: #c2c4cc;
+  --nutui-color-mask: rgba(0, 0, 0, 0.7);
+  --nutui-color-mask-part: rgba(0, 0, 0, 0.4);
+  --nutui-color-mask-fault-toleran: rgba(0, 0, 0, 0.4);
+
+  /* 字体 */
+  --nutui-font-family: PingFang SC, Microsoft YaHei, Helvetica, Hiragino Sans GB, SimSun, sans-serif;
+  --nutui-font-size-xxxs: 9px;
+  --nutui-font-size-xxs: 10px;
+  --nutui-font-size-xs: 11px;
+  --nutui-font-size-s: 12px;
+  --nutui-font-size-base: 14px;
+  --nutui-font-size-l: 16px;
+  --nutui-font-size-xl: 18px;
+  --nutui-font-size-xxl: 24px;
+  --nutui-font-size-10: 26px;
+  --nutui-font-size-11: 28px;
+  --nutui-font-weight-light: 300;
+  --nutui-font-weight: 400;
+  --nutui-font-weight-bold: 600;
+  --nutui-line-height-base: 1.8;
+
+  /* 间距 */
+  --nutui-spacing-xxxs: 2px;
+  --nutui-spacing-xxs: 4px;
+  --nutui-spacing-xs: 6px;
+  --nutui-spacing-s: 7px;
+  --nutui-spacing-base: 8px;
+  --nutui-spacing-l: 9px;
+  --nutui-spacing-xl: 12px;
+  --nutui-spacing-xxl: 16px;
+  --nutui-spacing-xxxl: 18px;
+
+  /* 圆角 */
+  --nutui-radius-xxxs: 1px;
+  --nutui-radius-xxs: 2px;
+  --nutui-radius-xs: 4px;
+  --nutui-radius-s: 6px;
+  --nutui-radius-base: 8px;
+  --nutui-radius-l: 8px;
+  --nutui-radius-xl: 10px;
+  --nutui-radius-xxl: 14px;
+  --nutui-radius-xxxl: 16px;
+  --nutui-radius-circle: 50px;
+  --nutui-radius-full: 50%;
+
+  /* 动画 */
+  --nutui-animation-duration: 0.25s;
+  --nutui-animation-timing-fun: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+
+  /* 层级 */
+  --nutui-zindex-actionsheet: 10001;
+
+  /* 基础变量 */
+  --nutui-black: #000;
+  --nutui-white: #fff;
+  --nutui-gray-1: #f7f8fa;
+  --nutui-gray-2: #f2f3f5;
+  --nutui-gray-3: #ebedf0;
+  --nutui-gray-4: #dcdee0;
+  --nutui-gray-5: #c8c9cc;
+  --nutui-gray-6: #969799;
+  --nutui-gray-7: #646566;
+  --nutui-gray-8: #323233;
+
+  /* 背景色 */
+  --nutui-body-background: #f6f6f6;
+  --nutui-light-color: #f6f6f6;
+}
+
+/* 暗色主题 */
+[data-theme='dark'] {
+  --nutui-color-primary: #1677ff;
+  --nutui-color-primary-stop-1: #69c0ff;
+  --nutui-color-primary-stop-2: #1677ff;
+  --nutui-color-primary-pressed: #0958d9;
+  --nutui-color-primary-disabled: #d9d9d9;
+  --nutui-color-primary-disabled-special: #bae7ff;
+  --nutui-color-primary-light-pressed: #e6f7ff;
+  --nutui-color-primary-icon: #1677ff;
+
+  --nutui-color-default: #1a1a1a;
+  --nutui-color-default-pressed: #2a2a2a;
+  --nutui-color-default-light: #0a0a0a;
+  --nutui-color-default-disabled: #1a1a1a;
+  --nutui-color-primary-icon-disabled: #666666;
+  --nutui-color-primary-specialdisabled: #ffadbe;
+  --nutui-color-info-background: #0073ff;
+
+  --nutui-color-info: #0073ff;
+  --nutui-color-info-pressed: #496af2;
+  --nutui-color-info-disabled: #89a6f8;
+  --nutui-color-info-light: #1a1a1a;
+  --nutui-color-info-text: #0073ff;
+
+  --nutui-color-success: #00d900;
+  --nutui-color-success-pressed: #00b800;
+  --nutui-color-success-disabled: #b2f0ae;
+  --nutui-color-success-light: #1a1a1a;
+  --nutui-color-success-text: #2aa32a;
+
+  --nutui-color-warning: #ffbf00;
+  --nutui-color-warning-pressed: #e6ac00;
+  --nutui-color-warning-disabled: #fdd3b9;
+  --nutui-color-warning-light: #1a1a1a;
+  --nutui-color-warning-text: #d48806;
+
+  --nutui-color-danger: #fa2c19;
+  --nutui-color-danger-pressed: #e53029;
+  --nutui-color-danger-disabled: #ffadbe;
+  --nutui-color-danger-light: #1a1a1a;
+  --nutui-color-danger-text: #d32029;
+
+  --nutui-color-help: #2a2a2a;
+  --nutui-color-title: #ffffff;
+  --nutui-color-title2: #cccccc;
+  --nutui-color-text: #e0e0e0;
+  --nutui-color-text-help: #999999;
+  --nutui-color-text-disabled: #666666;
+  --nutui-color-text-dark: #ffffff;
+  --nutui-color-text-link: #0073ff;
+  --nutui-color-disable: #666666;
+  --nutui-color-white: #1a1a1a;
+  --nutui-color-black: #ffffff;
+
+  --nutui-color-background: #1a1a1a;
+  --nutui-color-background-overlay: #2a2a2a;
+  --nutui-color-background-sunken: #0a0a0a;
+  --nutui-color-border: rgba(255, 255, 255, 0.1);
+  --nutui-color-border-disabled: #666666;
+  --nutui-color-mask: rgba(0, 0, 0, 0.8);
+  --nutui-color-mask-part: rgba(0, 0, 0, 0.6);
+  --nutui-color-mask-fault-toleran: rgba(0, 0, 0, 0.6);
+
+  --nutui-body-background: #1a1a1a;
+  --nutui-light-color: #1a1a1a;
+
+  --nutui-black: #ffffff;
+  --nutui-white: #1a1a1a;
+  --nutui-gray-1: #2a2a2a;
+  --nutui-gray-2: #1a1a1a;
+  --nutui-gray-3: #333333;
+  --nutui-gray-4: #444444;
+  --nutui-gray-5: #666666;
+  --nutui-gray-6: #999999;
+  --nutui-gray-7: #cccccc;
+  --nutui-gray-8: #ffffff;
+}
