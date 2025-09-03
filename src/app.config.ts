@@ -29,7 +29,7 @@ export default defineAppConfig({
       pages: [
         'level/index',
         'info/index',
-        'verify/index',
+        // 'verify/index',
         'attendanceRecord/index',
         'question/index',
         'passwordLogin/index',

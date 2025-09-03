@@ -7,6 +7,11 @@ import request from '@/service'
 export const loginByPasswordApi = (data: any) => {
   return request.post('/employee/login/login', data)
 }
+
+export const loginByUserNameApi = (data: any) => {
+  return request.post('/employee/login/loginByName', data)
+}
+
 /**
 * 登录
 * '/wechat/login'
@@ -29,6 +34,21 @@ export const loginApi = (data: any) => {
 export const registerApi = (data: any) => {
   return request.post('/wechat/register', data)
 }
+
+/**
+ * 注册
+ * /wechat/registerByName
+ * @param data {
+    "name": "张三",
+    "password": "MyPassword123",
+    "confirmPassword": "MyPassword123",
+  }
+ *
+ */
+export const registerByNameApi = (data: any) => {
+  return request.post('/wechat/registerByName', data)
+}
+
 
 /**
 * 一键获取手机号登录

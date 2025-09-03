@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '手机号注册'
+  navigationBarTitleText: '用户注册'
 })

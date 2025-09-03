@@ -8,6 +8,7 @@ import Api from '@/api';
 import './style.scss';
 
 export interface InfoProps {
+  userName?: string | undefined;
   nickname?: string | undefined;
   avatarUrl?: string | undefined;
   accumulatedPoints: number; // 累计积分
@@ -95,14 +96,12 @@ export default () => {
                 {userInfo ? (
                   <View className="star-wrap">
                     <Rate
-                      activeColor="#FFC800"
-                      modelValue={userInfo?.level}
-                      iconSize="16"
+                      value={Number(userInfo?.level)}
+                      size="normal"
                       count={3}
-                      spacing={6}
-                      readonly
+                      readOnly
                     />
-                    <View className="start-modal" onClick={handleLevel}></View>
+                    {/* <View className="start-modal" onClick={handleLevel}></View> */}
                   </View>
                 ) : null}
               </View>
@@ -134,13 +133,13 @@ export default () => {
           className="text-[18px]"
         />
       </CellGroup>
-      <Cell
+      {/* <Cell
         title="实名认证"
         description={userInfo?.verified ? '（已认证）' : '（未认证）'}
         extra={<ArrowRight color="#52c41a" className="mr-[10px]"></ArrowRight>}
         onClick={handleVerify}
         className="text-[18px]"
-      />
+      /> */}
       <Cell
         title="考勤记录"
         extra={

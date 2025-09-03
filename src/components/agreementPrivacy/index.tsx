@@ -54,7 +54,7 @@ export const AgreementPrivacy = () => {
             });
           }}
         >
-          《用户服务协议1》
+          《用户服务协议》
         </text>
         <text>与</text>
         <text

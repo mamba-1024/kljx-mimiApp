@@ -90,6 +90,10 @@ export default () => {
         </Button>
         {/* <div className="flex flex-row justify-between items-center ml-10px mr-10px border-0 border-b-1 border-b-gray-200 border-solid h-50px">
       </div> */}
+      <View className="flex flex-row justify-between items-center ml-[10px] mr-[10px] border-0 border-b-1 border-b-gray-200 border-solid h-[50px]">
+          <span>用户名</span>
+          <span>{userInfo?.userName}</span>
+        </View>
         <View className="flex flex-row justify-between items-center ml-[10px] mr-[10px] border-0 border-b-1 border-b-gray-200 border-solid h-[50px]">
           <span>昵称</span>
           {/* <span>{userInfo?.nickname}</span> */}

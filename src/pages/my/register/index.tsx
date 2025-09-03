@@ -11,7 +11,8 @@ import Api from "@/api";
 import { setToken } from "@/utils";
 
 export default () => {
-  const [phone, setPhone] = useState("");
+  // const [phone, setPhone] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   // 实时获取用户是否同意协议
@@ -25,21 +26,21 @@ export default () => {
       return;
     }
     // 判断手机号和密码是否为空
-    if (!phone || !password || !confirmPassword) {
+    if (!userName || !password || !confirmPassword) {
       Taro.showToast({
-        title: "请输入手机号和密码",
+        title: "请输入用户名和密码",
         icon: "none",
       });
       return;
     }
-    // 判断手机号是否有效
-    if (!/^1[3-9]\d{9}$/.test(phone)) {
-      Taro.showToast({
-        title: "请输入正确的手机号",
-        icon: "none",
-      });
-      return;
-    }
+    // // 判断手机号是否有效
+    // if (!/^1[3-9]\d{9}$/.test(userName)) {
+    //   Taro.showToast({
+    //     title: "请输入正确的手机号",
+    //     icon: "none",
+    //   });
+    //   return;
+    // }
     // 判断密码是否一致
     if (password !== confirmPassword) {
       Taro.showToast({
@@ -49,8 +50,8 @@ export default () => {
       return;
     }
     // 调用注册接口
-    Api.registerApi({
-      phone,
+    Api.registerByNameApi({
+      userName,
       password,
       confirmPassword,
       loading: true,
@@ -73,12 +74,12 @@ export default () => {
           <Image src={logo} className="w-[60px] h-[60px] rounded-full" />
           <View className="font-bold text-xl ml-2">欢迎使用科力机械</View>
         </View>
-        <View className="text-sm text-[#979797] mb-1">手机号</View>
+        <View className="text-sm text-[#979797] mb-1">用户名</View>
         <Input
           className="mb-2"
-          placeholder="请输入手机号"
-          value={phone}
-          onChange={setPhone}
+          placeholder="请输入用户名"
+          value={userName}
+          onChange={setUserName}
         />
         <View className="text-sm text-[#979797] mb-1">密码</View>
         <Input

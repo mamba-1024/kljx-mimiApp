@@ -124,7 +124,7 @@ export default () => {
           />
           {/* <View>科力机械</View> */}
         </View>
-        <Button
+        {/* <Button
           openType={auth ? 'getPhoneNumber' : undefined}
           className="nut-button nut-button-primary nut-button-primary-solid nut-button-large nut-button-round nut-button-round-large nut-button-block rounded-full"
           onGetPhoneNumber={onGetPhoneNumber}
@@ -138,10 +138,10 @@ export default () => {
           }}
         >
           手机号快捷登录
-        </Button>
+        </Button> */}
         <NutButton
-          fill="none"
-          size="large"
+          type='primary'
+          size='large'
           block
           className="mt-[30px] rounded-full"
           onClick={() => {
@@ -150,7 +150,8 @@ export default () => {
             });
           }}
         >
-          <Text className=" text-primary">切换到账号密码登录</Text>
+          {/* <Text className=" text-primary">账号密码登录</Text> */}
+          账号密码登录
         </NutButton>
         <NutButton
           fill="none"
