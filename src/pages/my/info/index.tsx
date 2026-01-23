@@ -108,7 +108,7 @@ export default () => {
           </span>
         </View>
         <View className="flex flex-row justify-between items-center ml-[10px] mr-[10px] border-0 border-b-1 border-b-gray-200 border-solid h-[50px]">
-          <span>手机号</span>
+          <span>员工编号</span>
           <span>{userInfo?.phoneNumber}</span>
         </View>
         <View className="text-center mt-[30px] px-6">

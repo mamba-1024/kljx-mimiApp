@@ -7,13 +7,25 @@ export interface LocationInfo {
 }
 
 // 默认的打卡位置
+/**
+31.287028,119.861743
+
+31.28697,119.861715
+
+31.2869,119.861685
+
+31.286734,119.861606
+*/
 // 默认的打卡位置 纬度: 31.286248, 经度: 119.86139
 export const defaultLocation = {
-  name: "科力机械新厂区",
-  latitude: 31.286248,
-  longitude: 119.86139,
+  name: "科力机械厂房",
+  latitude: 31.28697,
+  longitude: 119.861715,
   address: "江苏省无锡市宜兴市湖光中路6号",
 };
+
+// 最大范围距离
+export const MAX_DISTANCE = 50;
 
 /**
  * 检查位置权限
@@ -194,7 +206,7 @@ export const calculateDistance = (
 export const getOverRange = (latitude: number, longitude: number) => {
   const distance = calculateDistance(latitude, longitude, defaultLocation.latitude, defaultLocation.longitude);
   // 保留两位小数
-  return Number((distance - 50).toFixed(2));
+  return Number((distance - MAX_DISTANCE).toFixed(2));
 };
 
 /**
@@ -207,7 +219,7 @@ export const getOverRange = (latitude: number, longitude: number) => {
 export const isWithinRange = (
   currentLocation: LocationInfo,
   targetLocation: LocationInfo,
-  maxDistance: number = 50
+  maxDistance: number = MAX_DISTANCE
 ): boolean => {
 
   if (!currentLocation || !targetLocation) {

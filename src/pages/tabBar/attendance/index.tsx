@@ -23,6 +23,7 @@ import {
   getCurrentLocation,
   isWithinRange,
   defaultLocation,
+  MAX_DISTANCE,
 } from "@/utils/location";
 import LocationPicker from "@/components/LocationPicker";
 import MapIcon from "@/assets/image/map.png";
@@ -62,11 +63,7 @@ export default () => {
   const [showLocationPicker, setShowLocationPicker] = useState(false);
 
   // 是否在打卡范围内
-  const isInDefaultLocation = isWithinRange(
-    currentLocation,
-    defaultLocation,
-    50
-  );
+  const isInDefaultLocation = isWithinRange(currentLocation, defaultLocation, MAX_DISTANCE);
 
   // 倒计时6秒钟
   useEffect(() => {
@@ -96,20 +93,22 @@ export default () => {
   const seconds = time.getSeconds().toString().padStart(2, "0");
 
   function gitInit() {
-    if (!needGitInit) {
-      return;
-    }
+    // if (!needGitInit) {
+    //   return;
+    // }
     Api.getAttendanceApi().then((res) => {
       setMenuItems(
-        res.data?.workShifts?.map((ele) => ({ name: ele.shiftName, ...ele })) ||
-          []
+        res.data?.workShifts?.map((ele) => ({
+          name: `${ele.shiftName}（${ele?.startTime} - ${ele?.endTime}）`,
+          ...ele,
+        })) || []
       );
       setAttendanceRecords(res?.data?.attendanceRecords || []);
-      if (!workShift) {
-        setWorkShift(res.data?.workShifts[0]);
-      }
+
+      setWorkShift(res.data?.defaultWorkShift ?? res.data?.workShifts[0]);
+
       setSeasonalName(res.data?.seasonalName);
-      needGitInit = false;
+      // needGitInit = false;
     });
   }
 
@@ -126,9 +125,7 @@ export default () => {
     try {
       const location = await getCurrentLocation();
       setCurrentLocation(location);
-      console.log("位置获取成功:", location);
     } catch (error) {
-      console.error("位置获取失败:", error);
       // setLocationError(error.message || "获取位置失败");
       Taro.showToast({
         title: error.message || "获取位置失败",
@@ -166,8 +163,6 @@ export default () => {
 
   // 打卡
   const attendanceAction = () => {
-    console.log("打开逻辑请求");
-
     if (!currentLocation) {
       Taro.showToast({
         title: "无法获取位置信息，请检查定位权限",
@@ -180,9 +175,9 @@ export default () => {
       attendanceTime: formatTime(new Date(), "yyyy-MM-dd HH:mm:ss"),
       punchType: renderBtn(attendanceRecords, workShift).punchType, // 0 上班；1 下班
       workShiftId: workShift?.id,
-      latitude: currentLocation.latitude,
-      longitude: currentLocation.longitude,
-      address: currentLocation.address,
+      // latitude: currentLocation.latitude,
+      // longitude: currentLocation.longitude,
+      // address: currentLocation.address,
     };
 
     Api.doAttendanceApi(params).then(() => {
@@ -204,7 +199,6 @@ export default () => {
       });
       return;
     }
-    console.log("点击打卡");
     // 如果已经打卡下班，不能重复打卡
     const punchType = renderBtn(attendanceRecords, workShift).punchType;
     if (punchType === 2) {
@@ -217,7 +211,7 @@ export default () => {
 
     // 普通班次上班打卡需要弹窗
     if (
-      (workShift?.id === 1 || workShift?.id === 3) &&
+      (workShift?.id === 1 || workShift?.id === 4) &&
       punchType === 0 &&
       !canCheckIn
     ) {
@@ -226,7 +220,6 @@ export default () => {
     }
     // 当前的下班打卡是否小于约定的下班时间
     if (renderBtn(attendanceRecords, workShift).punchType === 1) {
-      console.log("提前打卡判断逻辑");
       // 截止时间
       const endTime =
         formatTime(new Date(), "yyyy-MM-dd") + " " + workShift?.endTime;
@@ -236,7 +229,7 @@ export default () => {
         return;
       }
     }
-
+    // 打卡动作
     attendanceAction();
   };
 
@@ -303,16 +296,15 @@ export default () => {
 
       {/* 班次选择 */}
       <Cell
-        title="班次"
+        title={`${workShift?.shiftName}`}
         onClick={() => setIsVisible(!isVisible)}
-        extra={<Clock color="#4096ff"></Clock>}
+        extra={<ArrowRight color="#4096ff"></ArrowRight>}
         description={
-          <View className="flex flex-row items-center">
-            <View>
-              {workShift?.shiftName} {workShift?.startTime} -{" "}
-              {workShift?.endTime}
+          <View className="flex flex-row items-center text-[14px]">
+            <View className="text-[#4096ff]">
+              {workShift?.startTime} - {workShift?.endTime}
             </View>
-            <ArrowRight></ArrowRight>
+            {/* <ArrowRight color="#4096ff"></ArrowRight> */}
           </View>
         }
         className="w-full mb-4"
@@ -437,13 +429,13 @@ export default () => {
           <View className="text-sm text-gray-600 space-y-2">
             <View>
               {seasonalName === "冬令时"
-                ? "1.普通班次：7:00-17:00，当天6:00开始可以打卡，6:00-7:00打卡均按7:00开始计算工时，11:30-12:00为午餐时间不计入工时，17:00后可以进行下班打卡，均按17:00下班统计工时，请假或提前下班会二次确认是否早退，一旦确认无法更改。当天下班未打卡工时计算为0，需联系人工补卡。"
-                : "1.普通班次：7:00-17:30，当天6:00开始可以打卡，6:00-7:00打卡均按7:00开始计算工时，11:30-12:30为午餐时间不计入工时，17:30后可以进行下班打卡，均按17:30下班统计工时，请假或提前下班会二次确认是否早退，一旦确认无法更改。当天下班未打卡工时计算为0，需联系人工补卡"}
+                ? "1.普通班次：7:00-17:00，当天6:00开始可以打卡，6:00-7:00打卡均按7:00开始计算工时，11:30-13:00为午休时间不计入工时，17:00后可以进行下班打卡，均按17:00下班统计工时，请假或提前下班会二次确认是否早退，一旦确认无法更改。当天下班未打卡工时计算为0，需联系人工补卡。"
+                : "1.普通班次：7:00-17:30，当天6:00开始可以打卡，6:00-7:00打卡均按7:00开始计算工时，11:30-13:30为午休时间不计入工时，17:30后可以进行下班打卡，均按17:30下班统计工时，请假或提前下班会二次确认是否早退，一旦确认无法更改。当天下班未打卡工时计算为0，需联系人工补卡"}
             </View>
             <View>
               {seasonalName === "冬令时"
-                ? "2.加班班次：17:30-20:00，当天17:00后可以进行打卡（需普通班次下班完成后），均按17:30开始计算，20:00后可以进行下班打卡，均按20:00下班统计工时，20:00前下班打卡按照打卡时间计算工时。如有超过2.5小时加班的按带队计算为准。"
-                : "2.加班班次：18:00-20:30，当天17:30后可以进行打卡（须普通班次下班完成后），均按18：00开始计算，20:30后可以进行下班打卡，均按20:30下班统计工时，20:30前下班打卡按照打卡时间计算工时。如有超过2.5小时加班的按带队计算为准。"}
+                ? "2.加班班次：17:30-20:30，当天17:00后可以进行打卡（需普通班次下班完成后），均按17:30开始计算，20:30后可以进行下班打卡，均按20:30下班统计工时，20:30前下班打卡按照打卡时间计算工时。如有超过3小时加班的按带队计算为准。"
+                : "2.加班班次：17:30-20:30，当天17:30后可以进行打卡（须普通班次下班完成后），均按17：30开始计算，20:30后可以进行下班打卡，均按20:30下班统计工时，20:30前下班打卡按照打卡时间计算工时。如有超过3小时加班的按带队计算为准。"}
             </View>
           </View>
         </View>
@@ -455,7 +447,7 @@ export default () => {
         options={menuItems}
         onSelect={chooseItem}
         onCancel={() => setIsVisible(false)}
-        cancelText="取消"
+        cancelText="关闭"
       />
 
       <Popup

@@ -1,13 +1,11 @@
 import { View, Map } from "@tarojs/components";
 import { Cell } from "@nutui/nutui-react-taro";
-import { defaultLocation, getOverRange } from "@/utils/location";
+import { defaultLocation, getOverRange, MAX_DISTANCE } from "@/utils/location";
 import Taro from "@tarojs/taro";
 
 export default () => {
   // 获取query参数
   const { latitude, longitude }: any = Taro.getCurrentInstance().router?.params || {};
-
-  console.log('latitude, longitude', latitude, longitude);
 
   // 计算超出考勤范围的距离
   const overRange = (latitude: number, longitude: number) => {
@@ -40,9 +38,9 @@ export default () => {
 
       {/* 打卡范围 */}
       <Cell.Group>
-        <Cell title="打卡范围" extra="科力机械新厂区" />
-        <Cell title="打卡半径" extra="50米" />
-        <Cell title="超过考勤范围" extra={overRange(latitude, longitude)} />
+        <Cell title="打卡范围" extra={defaultLocation.name} description={`${defaultLocation.latitude}, ${defaultLocation.longitude}`} />
+        <Cell title="打卡半径" extra={`${MAX_DISTANCE}米`} />
+        <Cell title="超过考勤范围" extra={overRange(latitude, longitude)} description={`${latitude}, ${longitude}`} />
         {/* 提示 */}
         <Cell>
           <View>
